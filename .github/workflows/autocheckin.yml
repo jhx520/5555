@@ -46,3 +46,11 @@ jobs:
           USERID: ${{secrets.USERID}}
         run: |
           python jegotrip.py
+      - name: Telegram Notification
+      if: cancelled() == false
+      uses: xinthink/action-telegram@v1.1
+      with:
+        botToken: 882370074:AAFA-4XILukd2SisdGjrpC8E0hC26w3t_oQ #use telegram bot @BotFather
+        chatId: 504416008 #use telegram bot @userinfobot
+        jobStatus: ${{ job.status }}
+        skipSuccess: false
